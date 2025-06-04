@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -44,4 +45,6 @@ public class Articolo {
 	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)
 	private Set<Barcode> barcode = new HashSet<>();
 	
+	@OneToOne(cascade=CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)
+	private Ingredienti ingredienti;
 }

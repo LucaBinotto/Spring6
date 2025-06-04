@@ -9,6 +9,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -47,4 +49,12 @@ public class Articolo {
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)
 	private Ingredienti ingredienti;
+	
+	@ManyToOne
+	@JoinColumn(name="idiva", referencedColumnName = "idIva")
+	private Iva iva;
+	
+	@ManyToOne
+	@JoinColumn(name="idfamass", referencedColumnName = "id")
+	private FamAssort famAssort;
 }

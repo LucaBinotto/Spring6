@@ -1,11 +1,8 @@
 package net.webturing.app.entities;
 
-import java.sql.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

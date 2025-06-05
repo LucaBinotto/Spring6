@@ -8,24 +8,24 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.webturing.app.entities.Articolo;
+import net.webturing.app.entities.Articoli;
 
-public interface ArticoliRepository extends JpaRepository<Articolo, String>{
+public interface ArticoliRepository extends JpaRepository<Articoli, String>{
 	
 	//query method
-	Articolo findByCodArt(String codArt);
+	Articoli findByCodArt(String codArt);
 	
 	//query method
-	List<Articolo> findByDescrizioneLike(String descrizione, Pageable pageable);
+	List<Articoli> findByDescrizioneLike(String descrizione, Pageable pageable);
 	
 	//JPQL
 	@Query(value = "SELECT a FROM Articoli a JOIN a.barcode b WHERE b.barcode IN (:ean)")
-	Articolo selByEan(@Param("ean") String ean);
+	Articoli selByEan(@Param("ean") String ean);
 	
 	//SQL standard
 	@Query(value = "SELECT COUNT(*) FROM ARTICOLI WHERE DESCRIZIONE LIKE :desArt", nativeQuery = true)
 	int countRecords(@Param("desArt") String descrizione);
 	
 	//query method
-	List<Articolo> findByCodStatOrderByDescrizione(String codStat);
+	List<Articoli> findByCodStatOrderByDescrizione(String codStat);
 }

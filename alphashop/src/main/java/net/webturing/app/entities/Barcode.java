@@ -27,7 +27,7 @@ public class Barcode {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="codart", referencedColumnName = "codArt")
-	private Articolo articolo;
+	@JoinColumn(name="codart", referencedColumnName = "codart")
+	private Articoli articolo;
 	
 }

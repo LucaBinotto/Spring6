@@ -1,6 +1,6 @@
 package net.webturing.app.entities;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,23 +27,30 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Articolo {
+public class Articoli {
 	
 	@Id
 	@Column(name ="codart")
 	private String codArt;
+	
 	@Column(name ="descrizione")
 	private String descrizione;
+	
 	@Column(name ="um")
 	private String um;
+	
 	@Column(name ="codstat")
 	private String codStat;
+	
 	@Column(name ="pzcart")
 	private Integer pzCart;
+	
 	@Column(name ="pesonetto")
-	private double pesoNetto;
+	private Double pesoNetto;
+	
 	@Column(name ="prezzo")
-	private double prezzo;
+	private Double prezzo;
+	
 	@Column(name ="idstatoart")
 	private String idStatoArt;
 	
@@ -59,7 +66,7 @@ public class Articolo {
 	private Ingredienti ingredienti;
 	
 	@ManyToOne
-	@JoinColumn(name="idiva", referencedColumnName = "idIva")
+	@JoinColumn(name="idiva", referencedColumnName = "idiva")
 	private Iva iva;
 	
 	@ManyToOne

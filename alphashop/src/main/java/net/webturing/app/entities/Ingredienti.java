@@ -21,13 +21,12 @@ public class Ingredienti {
 	
 	@Id
 	@Column(name="codart")
-	@OneToOne
 	private String codArt;
-	@Column(name="info")
+	@Column(name="info", length = 300)
 	private String info;
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	private Articolo articolo;
+	private Articoli articolo;
 
 }

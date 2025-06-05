@@ -24,10 +24,10 @@ public class FamAssort {
 	
 	@Id
 	@Column(name="id")
-	private String id;
+	private Integer id;
 	@Column(name="descrizione")
 	private String descrizione;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "famAssort")
-	private Set<Articolo> articoli = new HashSet<>();
+	private Set<Articoli> articoli = new HashSet<>();
 }

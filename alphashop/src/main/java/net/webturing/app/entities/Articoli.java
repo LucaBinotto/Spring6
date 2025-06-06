@@ -59,7 +59,7 @@ public class Articoli {
 	@Column(name ="datacreazione")
 	private Date dataCreazione;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)
 	private Set<Barcode> barcode = new HashSet<>();
 	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy = "articolo", orphanRemoval = true)

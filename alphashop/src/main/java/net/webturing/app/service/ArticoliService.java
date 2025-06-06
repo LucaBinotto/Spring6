@@ -2,15 +2,15 @@ package net.webturing.app.service;
 
 import java.util.List;
 
-import net.webturing.app.entities.Articoli;
+import net.webturing.app.dto.ArticoliDto;
 
 public interface ArticoliService {
 
-	public List<Articoli> SelAll();
+	public List<ArticoliDto> selAll();
 	
-	public Articoli SelByCodArt(String codart);
+	public ArticoliDto selByCodArt(String codart);
 	
-	public List<Articoli> SelByDescrizione(String filter, int page, int numrec);
+	public List<ArticoliDto> selByDescrizione(String filter, int page, int numrec);
 	
-	public Articoli SelByBarcode(String barcode);
+	public ArticoliDto selByBarcode(String barcode);
 }

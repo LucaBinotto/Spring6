@@ -3,14 +3,14 @@ package net.webturing.app.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.java.Log;
-import net.webturing.app.entities.Articoli;
+import net.webturing.app.dto.ArticoliDto;
 import net.webturing.app.service.ArticoliService;
 
 @Log
@@ -29,13 +29,21 @@ public class ArticoliController {
 		}
 	
 	
-	@GetMapping
+	@GetMapping(value="/cerca/all")
 	public String getArticoli(ModelMap model) {
-		List<Articoli> articoli = artService.SelAll()
+		List<ArticoliDto> articoli = artService.selAll()
 				.stream().limit(5).collect(Collectors.toList());
 		
 		model.addAttribute("articoli", articoli);
 		
+		return "articoli";
+	}
+	
+	@GetMapping(value="/cerca/descrizione/{filter}")
+	public String getArticoli(@PathVariable("filter") String filter, ModelMap model) {
+		List<ArticoliDto> articoli = artService.selByDescrizione(filter, 0, 10);
+		
+		model.addAttribute("articoli", articoli);
 		return "articoli";
 	}
 }

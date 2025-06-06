@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset-UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!doctype html>
 <html lang="en">
@@ -28,7 +30,10 @@
 			<header class="card-header">
 				<div class="row gx-3">
 					<div class="col-lg-4 col-md-6 me-auto">
-						<input type="text" placeholder="Cerca..." class="form-control">
+						<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/articoli/search"> 
+						
+						<input type="text" onClick="this.select();" name="filtro" value="${filtro}" placeholder="Cerca..." class="form-control">
+						</form:form> 
 					</div>
 					<div class="col-lg-2 col-6 col-md-3">
 						<select class="form-select">
@@ -78,11 +83,11 @@
 						<tbody>
 							<c:forEach items="${articoli}" var="article">
 								<tr>
-									<td class="tbl-string">${article.codArt}</td>
+									<td class="tbl-string">${article.codart}</td>
 									<td class="tbl-string">${article.descrizione}</td>
 									<td class="tbl-string">${article.um}</td>
-									<td class="tbl-string">${article.pzCart}</td>
-									<td class="tbl-string">${article.pesoNetto}</td>
+									<td class="tbl-string">${article.pzcart}</td>
+									<td class="tbl-string">${article.pesonetto}</td>
 									<td class="tbl-string"><fmt:formatNumber
 											value="${article.prezzo}" type="currency" currencyCode="USD" /></td>
 
@@ -120,36 +125,6 @@
 		<!-- Fine Body -->
 
 	</section>
-
-
-	<!--  
- <h3 class="subtitle">Ciao ${name}, questi sono gli articoli disponibili</h3>
- 
- <table class="table">
- 	<thead>
- 		<tr>
- 			<th>Codice</th>
- 			<th>Descrizione</th>
- 			<th>UM</th>
- 			<th>Pezzi</th>
- 			<th>Peso</th>
- 			<th>Prezzo</th>
- 		</tr>
- 	</thead>
- 	<tbody>
- 		<c:forEach items="${articoli}" var="article">
- 			<tr>
- 				<td>${article.codArt}</td>
- 				<td>${article.descrizione}</td>
- 				<td>${article.um}</td>
- 				<td>${article.pzCart}</td>
- 				<td>${article.pesoNetto}</td>
- 				<td>${article.prezzo}</td>
- 			</tr>
- 		</c:forEach>
- 	</tbody>
- </table>
- -->
 
 	<%@ include file="common/foot.jspf"%>
 </body>

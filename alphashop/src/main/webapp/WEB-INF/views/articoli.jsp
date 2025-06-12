@@ -30,7 +30,7 @@
 			<header class="card-header">
 				<div class="row gx-3">
 					<div class="col-lg-4 col-md-6 me-auto">
-						<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/articoli/search"> 
+						<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/alphashop/articoli/search"> 
 						
 						<input type="text" onClick="this.select();" name="filtro" value="${filtro}" placeholder="Cerca..." class="form-control">
 						</form:form> 

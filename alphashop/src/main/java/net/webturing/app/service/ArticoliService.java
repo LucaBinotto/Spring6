@@ -13,4 +13,6 @@ public interface ArticoliService {
 	public List<ArticoliDto> selByDescrizione(String filter, int page, int numrec);
 	
 	public ArticoliDto selByBarcode(String barcode);
+
+	public int numRecords(String filtro);
 }

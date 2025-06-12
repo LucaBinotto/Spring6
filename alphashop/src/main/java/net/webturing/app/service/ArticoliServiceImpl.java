@@ -76,4 +76,10 @@ public class ArticoliServiceImpl implements ArticoliService{
 		return artDto;
 	}
 
+	@Override
+	public int numRecords(String filtro) {
+		
+		return artRepo.countRecords(filtro);
+	}
+
 }

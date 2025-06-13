@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html;charset-UTF-8" language="java" %>
+<%@ page contentType="text/html;charset-UTF-8" language="java"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!doctype html>
@@ -30,10 +30,12 @@
 			<header class="card-header">
 				<div class="row gx-3">
 					<div class="col-lg-4 col-md-6 me-auto">
-						<form:form class="form-inline my-2 my-lg-0" id="search" role="search" method="GET" action="/alphashop/articoli/search"> 
-						
-						<input type="text" onClick="this.select();" name="filtro" value="${filtro}" placeholder="Cerca..." class="form-control">
-						</form:form> 
+						<form:form class="form-inline my-2 my-lg-0" id="search"
+							role="search" method="GET" action="/alphashop/articoli/search">
+
+							<input type="text" id="filtroInput" onClick="this.select();" name="filtro"
+								value="${filtro}" placeholder="Cerca..." class="form-control">
+						</form:form>
 					</div>
 					<div class="col-lg-2 col-6 col-md-3">
 						<select class="form-select">
@@ -94,9 +96,9 @@
 									<td class="tbl-string infoBadge"><span
 										class="badge rounded-pill text-bg-primary"> Normale </span></td>
 
-									<td class="tbl-string">01/01/2023</td>
+									<td class="tbl-string">${article.datacreazione}</td>
 									<td class="tbl-string infoBadge"><span
-										class="badge rounded-pill text-bg-primary"> Attivo </span></td>
+										class="badge rounded-pill text-bg-primary"> ${article.idstatoart} </span></td>
 
 
 									<td class="text-end">
@@ -125,7 +127,12 @@
 		<!-- Fine Body -->
 
 	</section>
-
+	
+	<script>
+		document.getElementById("filtroInput").addEventListener("click", function(){
+			this.select();
+		});
+	</script>
 	<%@ include file="common/foot.jspf"%>
 </body>
 </html>

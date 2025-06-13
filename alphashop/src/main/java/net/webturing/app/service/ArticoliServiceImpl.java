@@ -79,7 +79,7 @@ public class ArticoliServiceImpl implements ArticoliService{
 	@Override
 	public int numRecords(String filtro) {
 		
-		return artRepo.countRecords(filtro);
+		return artRepo.countRecords("%".concat(filtro.toUpperCase()).concat("%"));
 	}
 
 }

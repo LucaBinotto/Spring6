@@ -33,8 +33,9 @@
 						<form:form class="form-inline my-2 my-lg-0" id="search"
 							role="search" method="GET" action="/alphashop/articoli/search">
 
-							<input type="text" id="filtroInput" onClick="this.select();" name="filtro"
-								value="${filtro}" placeholder="Cerca..." class="form-control">
+							<input type="text" id="filtroInput" onClick="this.select();"
+								name="filtro" value="${filtro}" placeholder="Cerca..."
+								class="form-control">
 						</form:form>
 					</div>
 					<div class="col-lg-2 col-6 col-md-3">
@@ -98,7 +99,8 @@
 
 									<td class="tbl-string">${article.datacreazione}</td>
 									<td class="tbl-string infoBadge"><span
-										class="badge rounded-pill text-bg-primary"> ${article.idstatoart} </span></td>
+										class="badge rounded-pill text-bg-primary">
+											${article.idstatoart} </span></td>
 
 
 									<td class="text-end">
@@ -120,6 +122,65 @@
 
 						</tbody>
 					</table>
+
+					<c:if test="${notFound}">
+						<div class="alert alert-danger" role="alert">Articolo/i non
+							presente/i in anagrafica</div>
+					</c:if>
+
+					<!-- Paginazione -->
+					<nav class="float-end mt-3" aria-label="Page navigation">
+						<ul class="pagination">
+
+							<!-- Tasto Next Disabilitato -->
+							<c:if test="${PageNum <= 1}">
+								<li class="page-item disabled"><a class="page-link"
+									href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Precedente</span>
+								</a></li>
+							</c:if>
+
+							<spring:url
+								value="/articoli/cerca/parametri;paging=${PageNum},0,-1?filtro=${filtro}&selected=${RecPage}"
+								var="urlPrevious" />
+
+							<!-- Tasto Next Abilitato -->
+							<c:if test="${PageNum > 1}">
+								<li class="page-item"><a class="page-link"
+									href="${urlPrevious}" aria-label="Previous"> <span
+										aria-hidden="true">&laquo;</span> <span class="sr-only">Precedente</span>
+								</a></li>
+							</c:if>
+
+							<c:forEach items="${Pages}" var="Pagine">
+
+								<spring:url
+									value="/articoli/cerca/parametri;paging=${Pagine.pageNum},0,0?filtro=${filtro}&selected=${RecPage}"
+									var="urlPage" />
+
+								<c:choose>
+									<c:when test="${Pagine.isSelected}">
+										<li class="page-item active"><a class="page-link"
+											href="${urlPage}"> ${Pagine.pageNum} </a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"
+											href="${urlPage}"> ${Pagine.pageNum} </a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+
+							<spring:url
+								value="/articoli/cerca/parametri;paging=${PageNum},0,1?filtro=${filtro}&selected=${RecPage}"
+								var="urlNext" />
+
+							<!-- Tasto Previous -->
+							<li class="page-item"><a class="page-link" href="${urlNext}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+									class="sr-only">Successivo</span>
+							</a></li>
+						</ul>
+					</nav>
 				</div>
 
 			</div>
@@ -127,11 +188,12 @@
 		<!-- Fine Body -->
 
 	</section>
-	
+
 	<script>
-		document.getElementById("filtroInput").addEventListener("click", function(){
-			this.select();
-		});
+		document.getElementById("filtroInput").addEventListener("click",
+				function() {
+					this.select();
+				});
 	</script>
 	<%@ include file="common/foot.jspf"%>
 </body>
